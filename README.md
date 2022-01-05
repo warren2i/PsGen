@@ -6,7 +6,9 @@ Powershell script generation from the browser.
 Install guide
 
 git clone https://github.com/warren2i/PsGen
+
 cd PsGen
+
 pip -r requirements.txt
 
 To run -->
