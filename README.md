@@ -19,3 +19,8 @@ To run -->
 flask run
 
 visit  http://127.0.0.1:5000/ in browser
+
+TODO ------>
+
+All generated forms in macros.html are displayed and must be removed before building a script, this page should be empty
+when first viewed
