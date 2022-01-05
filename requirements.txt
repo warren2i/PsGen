@@ -1,0 +1,8 @@
+Flask==2.0.1
+Flask-SQLAlchemy==2.5.1
+Flask-WTF==1.0.0
+gunicorn==20.1.0
+Jinja2==3.0.1
+SQLAlchemy==1.4.19
+WTForms==3.0.1
+
