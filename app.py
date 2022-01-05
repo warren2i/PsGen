@@ -6,7 +6,7 @@ from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms import Form, FieldList, FormField, IntegerField, SelectField, \
-    StringField, TextAreaField, SubmitField, DateField
+    StringField, TextAreaField, SubmitField, DateField, BooleanField
 from wtforms import validators
 
 
@@ -103,7 +103,11 @@ class LineForm(Form):
         'To Location',
         validators = [validators.Length(max = 255)]
     )
-
+    encoding = BooleanField(
+        'Encode command',
+        default = "unchecked",
+        false_values = None
+    )
 
 class MainForm(FlaskForm):
     """Parent form."""
@@ -145,6 +149,7 @@ class Line(db.Model):
     password = db.Column(db.String(255))
     tolocation = db.Column(db.String(255))
     fromlocation = db.Column(db.String(255))
+    encoding = db.Column(db.String(100))
 
     # Relationship
     script = db.relationship(
@@ -173,10 +178,14 @@ def index ():
 
         for line in form.lines.data:
             # print(line)
-            dateform = (
-                line['date'].strftime('%m/%d/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
-            print(schedprocess(line['taskName'], line['procName'], dateform))
-            print(runenccommand(encodecommand(schedprocess(line['taskName'], line['procName'], dateform))))
+            print(line)
+            if line['date'] is not None:
+                dateform = (line['date'].strftime(
+                    '%m/%d/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
+                line['date'] = dateform
+            # print(line)
+            # print(schedprocess(line['taskName'], line['procName'], dateform))
+            # print(runenccommand(encodecommand(schedprocess(line['taskName'], line['procName'], dateform))))
             new_line = Line(**line)
             # Add to script
             new_script.lines.append(new_line)

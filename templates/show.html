@@ -13,10 +13,19 @@
 <table>
     <thead>
     <tr>
-        <th>Runner name</th>
-        <th>Line time</th>
+        <th>ID</th>
+        <th>Script ID</th>
+        <th>Runner Name</th>
+        <th>Time</th>
         <th>arg</th>
+        <th>Task Name</th>
+        <th>When</th>
+        <th>Proc Name</th>
         <th>Delay</th>
+        <th>Url</th>
+        <th>Dir</th>
+        <th>Date</th>
+        <th>Encoding</th>
     </tr>
     </thead>
     <tbody>
@@ -34,6 +43,7 @@
         <td>{{ line.url }}</td>
         <td>{{ line.dir }}</td>
         <td>{{ line.date }}</td>
+        <td>{{ line.encoding }}</td>
     </tr>
     {% endfor%}
     </tbody>
