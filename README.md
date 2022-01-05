@@ -6,7 +6,7 @@ The scope of this tool is to enable novice users to generate complex powershell 
 
 ![alt text](https://github.com/warren2i/PsGen/blob/master/Screenshots/2022-01-05%2015_59_46-Line%20logging.png?raw=true)
 
-Install guide
+Install guide.
 
 git clone https://github.com/warren2i/PsGen
 
