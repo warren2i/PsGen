@@ -175,10 +175,8 @@ def index ():
         # Create script
         new_script = Script()
         db.session.add(new_script)
-
+        print(form.lines.object_data)
         for line in form.lines.data:
-            # print(line)
-            print(line)
             if line['date'] is not None:
                 dateform = (line['date'].strftime(
                     '%m/%d/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
