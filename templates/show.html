@@ -1,0 +1,43 @@
+{# templates/show.html #}
+<html>
+<head>
+    <title>Script details</title>
+
+</head>
+<body>
+<a href="{{ url_for('index') }}">Back to index</a>
+
+{% if not script %}
+<p>Could not find script details</p>
+{% else %}
+<table>
+    <thead>
+    <tr>
+        <th>Runner name</th>
+        <th>Line time</th>
+        <th>arg</th>
+        <th>Delay</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for line in script.lines %}
+    <tr>
+        <td>{{ line.id }}</td>
+        <td>{{ line.script_id }}</td>
+        <td>{{ line.runner_name }}</td>
+        <td>{{ line.line_time }}</td>
+        <td>{{ line.arg }}</td>
+        <td>{{ line.taskName }}</td>
+        <td>{{ line.when }}</td>
+        <td>{{ line.procName }}</td>
+        <td>{{ line.delay }}</td>
+        <td>{{ line.url }}</td>
+        <td>{{ line.dir }}</td>
+        <td>{{ line.date }}</td>
+    </tr>
+    {% endfor%}
+    </tbody>
+</table>
+{% endif %}
+</body>
+</html>

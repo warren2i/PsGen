@@ -1,0 +1,87 @@
+{# templates/macros.html #}
+{# Render line form.
+
+This macro is intended to render both regular line subforms (received from the
+server) and the template form used to dynamically add more forms.
+server) and the template form used to dynamically add more forms.
+
+Arguments:
+- subform: Form object to render
+- index: Index of the form. For proper subforms rendered in the form loop,
+this should match `loop.index0`, and for the template it should be
+'_'
+#}
+{%- macro render_line_form(subform, index) %}
+<div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+     id="line-{{ index }}-form">
+    <div>
+        {{ subform.script_id }}
+    </div>
+    <div>
+        {{ subform.arg.label }}
+        {{ subform.arg }}
+    </div>
+    <div>
+        {{ subform.runner_name.label }}
+        {{ subform.runner_name }}
+    </div>
+    <div>
+        {{ subform.line_time.label }}
+        {{ subform.line_time}}
+    </div>
+    <div>
+        {{ subform.delay.label }}
+        {{ subform.delay }}
+    </div>
+
+    <a class="remove" href="#">Remove</a>
+    <hr/>
+</div>
+
+<div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+     id="schedprocess-{{ index }}-form">
+    <div>
+        <h4>sched process</h4>
+        {{ subform.script_id }}
+        {{ subform.taskName.label }}
+        {{ subform.taskName}}
+        {{ subform.procName.label }}
+        {{ subform.procName}}
+        {{ subform.date.label }}
+        {{ subform.date}}
+
+
+    </div>
+
+    <a class="remove" href="#">Remove</a>
+    <hr/>
+</div>
+
+<div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+     id="ping-{{ index }}-form">
+    <div>
+        <h4>ping</h4>
+        {{ subform.script_id }}
+        {{ subform.url.label }}
+        {{ subform.url }}
+
+    </div>
+
+    <a class="remove" href="#">Remove</a>
+    <hr/>
+</div>
+
+<div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+     id="setdate-{{ index }}-form">
+    <div>
+        <h3>Change Windows Date</h3>
+        {{ subform.script_id }}
+        {{ subform.date }}
+
+
+    </div>
+
+    <a class="remove" href="#">Remove</a>
+    <hr/>
+</div>
+{%- endmacro %}
