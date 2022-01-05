@@ -47,7 +47,7 @@ class NonValidatingSelectField(SelectField):
 class LineForm(Form):
     """Subform.
     CSRF is disabled for this subform (using `Form` as parent class) because
-    it is never used by itself
+    it is never used by itself.
     """
 
     runner_name = StringField(
