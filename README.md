@@ -2,6 +2,9 @@
 
 Powershell script generation from the browser.
 
+The scope of this tool is to enable novice users to generate complex powershell scripting without prior knowledge.
+
+![alt text](https://github.com/warren2i/psgen/blob/[branch]/image.jpg?raw=true)
 
 Install guide
 
