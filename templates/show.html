@@ -56,20 +56,33 @@
     <tbody>
 </table>
 <p></p>
-<div class="pshellcontainer">
-    <img src="static/Windows_PowerShell_logo.png"/>
-    <img align="right" src="static/Windows_close_icons.png"/>
-    <div class="pshell">
-        <table>
-            {% for line in script.lines %}
-            <tr>
-                <p style="color:white">{{ line.psline }}</p>
-            </tr>
-            {% endfor%}
-            </tbody>
-        </table>
+<div class="container">
+    <div class="pshellcontainer">
+        <img src="static/Windows_PowerShell_logo.png"/>
+        <img align="right" src="static/Windows_close_icons.png"/>
+        <div class="pshell">
+            <table>
+                {% for line in script.lines %}
+                <tr>
+                    <p style="color:white">{{ line.psline }}</p>
+                </tr>
+                {% endfor%}
+                </tbody>
+            </table>
+        </div>
     </div>
+    <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Copy to Clipboard</button>
+    <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Compile as PowerShell
+        Script
+    </button>
+    <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Compile as EXE</button>
+    <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Compile as EXE with Admin
+        Priv
+    </button>
+
+
 </div>
+
 
 {% endif %}
 </body>
