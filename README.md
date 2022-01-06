@@ -22,13 +22,15 @@ visit  http://127.0.0.1:5000/ in browser
 
 TODO ------>
 
-Date format change to suit pshell schema dd/mm/yyyy
-
-change
+copy to clipboard line by line option
 
 Port across powershell commands
 
 DONE ------>
+
+Date format change to suit pshell schema dd/mm/yyyy
+
+Added copy to clipboard function to scripts page
 
 Bootstrap
 

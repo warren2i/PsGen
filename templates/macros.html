@@ -49,37 +49,37 @@ this should match `loop.index0`, and for the template it should be
         </select>
         <button class="btn btn-outline-secondary" onclick="GetSelectedText()" type="button">Generate command</button>
     </div>
-<p></p>
+    <p></p>
 
     {%- endmacro %}
 
 
     {%- macro render_line_form(subform, index) %}
-<div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
-     id="line-{{ index }}-form">
-    <div>
-        {{ subform.script_id }}
-    </div>
-    <div>
-        {{ subform.arg.label }}
-        {{ subform.arg }}
-    </div>
-    <div>
-        {{ subform.runner_name.label }}
-        {{ subform.runner_name }}
-    </div>
-    <div>
-        {{ subform.line_time.label }}
-        {{ subform.line_time}}
-    </div>
-    <div>
-        {{ subform.delay.label }}
-        {{ subform.delay }}
-    </div>
+    <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+         id="line-{{ index }}-form">
+        <div>
+            {{ subform.script_id }}
+        </div>
+        <div>
+            {{ subform.arg.label }}
+            {{ subform.arg }}
+        </div>
+        <div>
+            {{ subform.runner_name.label }}
+            {{ subform.runner_name }}
+        </div>
+        <div>
+            {{ subform.line_time.label }}
+            {{ subform.line_time}}
+        </div>
+        <div>
+            {{ subform.delay.label }}
+            {{ subform.delay }}
+        </div>
 
-    <a class="remove" href="#">Remove Line</a>
-    <hr/>
-</div>
+        <a class="remove" href="#">Remove Line</a>
+        <hr/>
+    </div>
 
     <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
          id="schedprocess-{{ index }}-form">

@@ -19,6 +19,7 @@ def encode ( line, val2encode ):
         # encode
         return (runenccommand(encodecommand(val2encode)))
 
+
 class NonValidatingSelectField(SelectField):
     """
     Attempt to make an open ended select multiple field that can accept dynamic
@@ -202,9 +203,6 @@ def index ():
                 result = encode(line, Createnewuser(line['userName'], line['password']))
                 line['psline'] = result
             print(line)
-            # print(line)
-            # print(schedprocess(line['taskName'], line['procName'], dateform))
-            # print(runenccommand(encodecommand(schedprocess(line['taskName'], line['procName'], dateform))))
             new_line = Line(**line)
 
             # Add to script

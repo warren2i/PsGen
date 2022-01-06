@@ -16,33 +16,34 @@
                 display: none;
             }
 
+
     </style>
 </head>
 
 <body>
 <p></p>
 
-    {{ macros.render_header(headerform) }}
+{{ macros.render_header(headerform) }}
 
 
-    {# Show all subforms #}
+{# Show all subforms #}
 
-    <form action="" id="line-form" method="POST" role="form">
-        {{ form.hidden_tag() }}
+<form action="" id="line-form" method="POST" role="form">
+    {{ form.hidden_tag() }}
 
-        <div id="subforms-container">
-            <!--  {% for subform in form.lines %}
-              {{ macros.render_line_form(subform, loop.index0) }}
-              {% endfor %} -->
-            <!-- we was able to remove this, this fixes the display all commands on visit bug, we are keeping this in code as it could break core -->
-        </div>
+    <div id="subforms-container">
+        <!--  {% for subform in form.lines %}
+          {{ macros.render_line_form(subform, loop.index0) }}
+          {% endfor %} -->
+        <!-- we was able to remove this, this fixes the display all commands on visit bug, we are keeping this in code as it could break core -->
+    </div>
 
-        <button class="btn btn-success" type="submit">Generate script</button>
-    </form>
+    <button class="btn btn-success" type="submit">Generate script</button>
+</form>
 </div>
 
 
-    {% if form.errors %}
+{% if form.errors %}
 {{ form.errors }}
 {% endif %}
 

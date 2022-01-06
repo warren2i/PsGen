@@ -135,6 +135,16 @@ const ID_RE = /(-)_(-)/;
 				var e = document.getElementById("command-select");
 				var result = e.options[e.selectedIndex].value;
                 addForm(result)
-
-
 			}
+// below function used to copy powershell text to clipboard
+		    function copy(element_id){
+		        alert("Copied to Clipboard")
+                var aux = document.createElement("div");
+                aux.setAttribute("contentEditable", true);
+                aux.innerHTML = document.getElementById(element_id).innerHTML;
+                aux.setAttribute("onfocus", "document.execCommand('selectAll',false,null)");
+                document.body.appendChild(aux);
+                aux.focus();
+                document.execCommand("copy");
+                document.body.removeChild(aux);
+            }
