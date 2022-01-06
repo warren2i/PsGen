@@ -8,8 +8,16 @@ from flask_wtf import FlaskForm
 from wtforms import Form, FieldList, FormField, IntegerField, SelectField, \
     StringField, TextAreaField, SubmitField, DateField, BooleanField
 from wtforms import validators
-from commands import schedprocess, ping, setdate, copyfile, erase, getfile, Createnewuser
+from commands import schedprocess, ping, setdate, copyfile, erase, getfile, Createnewuser, runenccommand, encodecommand
 
+
+def encode ( line, val2encode ):
+    if line['encoding'] is not True:
+        # dont encode
+        return (val2encode)
+    else:
+        # encode
+        return (runenccommand(encodecommand(val2encode)))
 
 class NonValidatingSelectField(SelectField):
     """
@@ -170,29 +178,29 @@ def index ():
             print(line)
             if line['date'] is not None:
                 dateform = (line['date'].strftime(
-                    '%m/%d/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
+                    '%d/%m/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
                 line['date'] = dateform
             if line['command_name'] == 'ping':
-                print(ping(line['url']))
-                line['psline'] = ping(line['url'])
+                result = encode(line, ping(line['url']))
+                line['psline'] = result
             if line['command_name'] == 'schedproc':
-                print(schedprocess(line['taskName'], line['procName'], line['date']))
-                line['psline'] = schedprocess(line['taskName'], line['procName'], line['date'])
+                result = encode(line, schedprocess(line['taskName'], line['procName'], line['date']))
+                line['psline'] = result
             if line['command_name'] == 'setdate':
-                print(setdate(line['date']))
-                line['psline'] = setdate(line['date'])
+                result = encode(line, setdate(line['date']))
+                line['psline'] = result
             if line['command_name'] == 'copyfile':
-                print(copyfile(line['fromlocation'], line['tolocation']))
-                line['psline'] = copyfile(line['fromlocation'], line['tolocation'])
+                result = encode(line, copyfile(line['fromlocation'], line['tolocation']))
+                line['psline'] = result
             if line['command_name'] == 'erase':
-                print(erase(line['fileorfolder']))
-                line['psline'] = erase(line['fileorfolder'])
+                result = encode(line, erase(line['fileorfolder']))
+                line['psline'] = result
             if line['command_name'] == 'getfile':
-                print(getfile(line['url'], line['tolocation']))
-                line['psline'] = getfile(line['url'], line['tolocation'])
+                result = encode(line, getfile(line['url'], line['tolocation']))
+                line['psline'] = result
             if line['command_name'] == 'Createnewuser':
-                print(Createnewuser(line['userName'], line['password']))
-                line['psline'] = Createnewuser(line['userName'], line['password'])
+                result = encode(line, Createnewuser(line['userName'], line['password']))
+                line['psline'] = result
             print(line)
             # print(line)
             # print(schedprocess(line['taskName'], line['procName'], dateform))

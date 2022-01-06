@@ -1,3 +1,6 @@
+import base64
+
+
 def cd ( directory ):
     """Sets the current working location to a specified location."""
     return ("cd" + " " + directory)

@@ -38,3 +38,21 @@ embed github logo in header using svg help page
 
 All generated forms in macros.html are displayed and must be removed before building a script, this page should be empty
 when first viewed.
+
+Dev notes ------>
+
+Encoding switch case
+
+    def encode(line, val2encode):
+        if line['encoding'] is not True:
+            #dont encode
+            return (val2encode)
+        else:
+            #encode
+            return (runenccommand(encodecommand(val2encode)))
+
+    
+    
+    if line['command_name'] == 'Createnewuser':
+        result = encode(line,Createnewuser(line['userName'], line['password']))
+        line['psline'] = result
