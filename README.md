@@ -27,4 +27,8 @@ when first viewed.
 
 DONE ------>
 
-Bootstrap Javascrip onclick events embed github logo in header using svg help page
+Bootstrap
+
+Javascrip onclick events
+
+embed github logo in header using svg help page
