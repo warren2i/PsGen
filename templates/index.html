@@ -11,7 +11,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/static/js/psgen.js"></script>
 
-
     <style>
             .is-hidden {
                 display: none;
@@ -32,15 +31,18 @@
         {{ form.hidden_tag() }}
 
         <div id="subforms-container">
-            {% for subform in form.lines %}
-            {{ macros.render_line_form(subform, loop.index0) }}
-            {% endfor %}
+            <!--  {% for subform in form.lines %}
+              {{ macros.render_line_form(subform, loop.index0) }}
+              {% endfor %} -->
+            <!-- we was able to remove this, this fixes the display all commands on visit bug, we are keeping this in code as it could break core -->
         </div>
 
         <button class="btn btn-success" type="submit">Generate script</button>
     </form>
 </div>
-{% if form.errors %}
+
+
+    {% if form.errors %}
 {{ form.errors }}
 {% endif %}
 

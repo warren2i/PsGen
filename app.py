@@ -8,30 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import Form, FieldList, FormField, IntegerField, SelectField, \
     StringField, TextAreaField, SubmitField, DateField, BooleanField
 from wtforms import validators
-
-
-def schedprocess ( name, proc, when ):
-    """https://docs.microsoft.com/en-us/powershell/module/scheduledtasks/new-scheduledtask?view=windowsserver2022-ps
-    name = schedule task name
-    proc = process name ie calc.exe
-    when = -At <DateTime>,-AtLogOn, -AtStartup, -Daily, -DaysInterval [<Int32>], -Once, -RandomDelay [num],
-
-    idle info The Task Scheduler service will check if the computer is in an idle state every 15 minutes. A computer is considered to be in an idle state when a screen saver is running. If a screen saver is not running, then the computer is considered to be in an idle state if there is 0% CPU usage and 0% disk input or output for 90% of the past fifteen minutes and if there is no keyboard or mouse input during this period of time. Once the Task Scheduler service detects that the computer is in an idle state, the service only waits for user input to mark the end of the idle state.
-    """
-    return (
-            'Register-ScheduledTask ' + name + ' -InputObject (New-ScheduledTask -Action (New-ScheduledTaskAction -Execute "' + proc + '") -Trigger (New-ScheduledTaskTrigger -At ' + when + ' -Once) -Settings (New-ScheduledTaskSettingsSet))')
-
-
-def runenccommand ( enc ):
-    """runs encoded commands in powershell
-    Useage example // runenccommand(encodecommand('ping google.com')) to generate // powershell -E cABpAG4AZwAgAGcAbwBvAGcAbABlAC4AYwBvAG0A
-    """
-    return ("powershell -E '" + enc + "'")
-
-
-def encodecommand ( command ):
-    """encodes a powershell command"""
-    return (base64.b64encode(command.encode("UTF-16LE", "ignore"))).decode('utf-8')
+from commands import schedprocess
 
 
 class NonValidatingSelectField(SelectField):
@@ -43,16 +20,6 @@ class NonValidatingSelectField(SelectField):
     def pre_validate ( self, form ):
         pass
 
-class ContactForm(FlaskForm):
-    """Contact form."""
-    command = SelectField(
-        'Commands',
-        choices = [('schedproc', 'schedproc'), ('ping', 'ping'), ('changewindowsdate', 'changewindowsdate'),
-                   ('movefile', 'movefile')],
-        validate_choice = False
-    )
-
-    submit = SubmitField('Submit')
 
 class LineForm(Form):
     """Subform.
@@ -60,6 +27,9 @@ class LineForm(Form):
     it is never used by itself.
     """
 
+    command_name = StringField(
+        'command_name'
+    )
     runner_name = StringField(
         'Runner name',
         # validators=[validators.InputRequired(), validators.Length(max=100)]
@@ -75,7 +45,7 @@ class LineForm(Form):
         validate_choice = False
     )
     url = StringField(
-        'Url',
+        'Url'
     )
     dir = StringField(
         'Dir',
@@ -119,6 +89,7 @@ class LineForm(Form):
         false_values = None
     )
 
+
 class MainForm(FlaskForm):
     """Parent form."""
     lines = FieldList(
@@ -142,7 +113,7 @@ class Script(db.Model):
 class Line(db.Model):
     """Stores lines of a script."""
     __tablename__ = 'lines'
-
+    command_name = db.Column(db.String(100))
     id = db.Column(db.Integer, primary_key = True)
     script_id = db.Column(db.Integer, db.ForeignKey('scripts.id'))
     dir = db.Column(db.String(100))
@@ -178,8 +149,6 @@ db.create_all(app = app)
 
 @app.route('/', methods = ['GET', 'POST'])
 def index ():
-    form1 = ContactForm()
-    print(form1)
     form = MainForm()
     template_form = LineForm(prefix = 'lines-_-')
 
@@ -187,8 +156,9 @@ def index ():
         # Create script
         new_script = Script()
         db.session.add(new_script)
-        print(form.lines.object_data)
+        # print(form.lines.object_data)
         for line in form.lines.data:
+            print(line)
             if line['date'] is not None:
                 dateform = (line['date'].strftime(
                     '%m/%d/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
@@ -206,7 +176,6 @@ def index ():
     return render_template(
         'index.html',
         form = form,
-        form1 = form1,
         scripts = scripts,
         _template = template_form
     )

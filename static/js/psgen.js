@@ -128,30 +128,11 @@ const ID_RE = /(-)_(-)/;
 
 
 
-
+// below function will get generate command GetSelectedText field and create a form with GetSelectedText as argument
 			function GetSelectedText(){
 				var e = document.getElementById("command-select");
 				var result = e.options[e.selectedIndex].value;
-				//alert(result);
-				if (result == 1) {
-                    addForm('line1');
-                    return;
-                }
-                if (result == 2) {
-                    addForm('line2');
-                    return;
-                }
-                if (result == "schedprocess") {
-                    addForm('schedprocess');
-                    return;
-                }
-                if (result == "ping") {
-                    addForm('ping');
-                    return;
-                }
-                if (result == "setdate") {
-                    addForm('setdate');
-                    return;
-                }
+                addForm(result)
+
 
 			}

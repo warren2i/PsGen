@@ -13,6 +13,7 @@
 <table>
     <thead>
     <tr>
+        <th>Command</th>
         <th>ID</th>
         <th>Script ID</th>
         <th>Runner Name</th>
@@ -31,6 +32,7 @@
     <tbody>
     {% for line in script.lines %}
     <tr>
+        <td>{{ line.command_name }}</td>
         <td>{{ line.id }}</td>
         <td>{{ line.script_id }}</td>
         <td>{{ line.runner_name }}</td>

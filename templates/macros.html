@@ -11,6 +11,8 @@ Arguments:
 this should match `loop.index0`, and for the template it should be
 '_'
 #}
+
+
 {%- macro render_header(headerform) %}
 <div class="container">
     <div class="row">
@@ -38,14 +40,16 @@ this should match `loop.index0`, and for the template it should be
             <option value="schedprocess">schedprocess</option>
             <option value="ping">Ping</option>
             <option value="setdate">Change Windows Date</option>
-            <option value="4">Move File</option>
+            <option value="movefile">Move File</option>
         </select>
         <button class="btn btn-outline-secondary" onclick="GetSelectedText()" type="button">Generate command</button>
     </div>
 <p></p>
 
     {%- endmacro %}
-{%- macro render_line_form(subform, index) %}
+
+
+    {%- macro render_line_form(subform, index) %}
 <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
      id="line-{{ index }}-form">
     <div>
@@ -76,6 +80,7 @@ this should match `loop.index0`, and for the template it should be
          id="schedprocess-{{ index }}-form">
         <div>
             <h4>sched process</h4>
+            {{ subform.command_name(value='schedproc',type="hidden")}}
             {{ subform.script_id }}
             {{ subform.taskName.label }}
             {{ subform.taskName}}
@@ -97,6 +102,7 @@ this should match `loop.index0`, and for the template it should be
          id="ping-{{ index }}-form">
         <div>
             <h4>ping</h4>
+            {{ subform.command_name(value='ping',type="hidden")}}
             {{ subform.script_id }}
             {{ subform.url.label }}
             {{ subform.url }}
@@ -111,6 +117,7 @@ this should match `loop.index0`, and for the template it should be
          id="setdate-{{ index }}-form">
         <div>
             <h3>Change Windows Date</h3>
+            {{ subform.command_name(value='setdate',type="hidden")}}
             {{ subform.script_id }}
             {{ subform.date }}
 
@@ -119,5 +126,20 @@ this should match `loop.index0`, and for the template it should be
 
         <a class="remove" href="#">Remove</a>
         <hr/>
-</div>
-{%- endmacro %}
+    </div>
+
+    <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+         id="movefile-{{ index }}-form">
+        <div>
+            <h3>Move file</h3>
+            {{ subform.command_name(value='setdate',type="hidden")}}
+            {{ subform.script_id }}
+            {{ subform.date }}
+
+
+        </div>
+
+        <a class="remove" href="#">Remove</a>
+        <hr/>
+    </div>
+    {%- endmacro %}
