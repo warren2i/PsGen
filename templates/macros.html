@@ -40,7 +40,12 @@ this should match `loop.index0`, and for the template it should be
             <option value="schedprocess">schedprocess</option>
             <option value="ping">Ping</option>
             <option value="setdate">Change Windows Date</option>
-            <option value="movefile">Move File</option>
+            <option value="copyfile">Copy File</option>
+            <option value="erase">Removes File</option>
+            <option value="getfile">download file to location</option>
+            <option value="Createnewuser">creates new local windows user</option>
+
+
         </select>
         <button class="btn btn-outline-secondary" onclick="GetSelectedText()" type="button">Generate command</button>
     </div>
@@ -80,6 +85,9 @@ this should match `loop.index0`, and for the template it should be
          id="schedprocess-{{ index }}-form">
         <div>
             <h4>sched process</h4>
+            <h6>You can register a task to run any of the following application or file types: Win32 applications, Win16
+                applications, OS/2 applications, MS-DOS applications, batch files (.bat), command files (.cmd), or any
+                properly registered file type.</h6>
             {{ subform.command_name(value='schedproc',type="hidden")}}
             {{ subform.script_id }}
             {{ subform.taskName.label }}
@@ -102,10 +110,13 @@ this should match `loop.index0`, and for the template it should be
          id="ping-{{ index }}-form">
         <div>
             <h4>ping</h4>
+            <h6> The receipt of corresponding echo Reply messages are displayed, along with round-trip times</h6>
             {{ subform.command_name(value='ping',type="hidden")}}
             {{ subform.script_id }}
             {{ subform.url.label }}
             {{ subform.url }}
+            {{ subform.encoding.label }}
+            {{ subform.encoding }}
 
         </div>
 
@@ -117,9 +128,12 @@ this should match `loop.index0`, and for the template it should be
          id="setdate-{{ index }}-form">
         <div>
             <h3>Change Windows Date</h3>
+            <h6>Changes the system time on the computer to a time that you specify.</h6>
             {{ subform.command_name(value='setdate',type="hidden")}}
             {{ subform.script_id }}
             {{ subform.date }}
+            {{ subform.encoding.label }}
+            {{ subform.encoding }}
 
 
         </div>
@@ -129,17 +143,72 @@ this should match `loop.index0`, and for the template it should be
     </div>
 
     <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
-         id="movefile-{{ index }}-form">
+         id="copyfile-{{ index }}-form">
         <div>
-            <h3>Move file</h3>
-            {{ subform.command_name(value='setdate',type="hidden")}}
-            {{ subform.script_id }}
-            {{ subform.date }}
-
+            <h3>Copy file</h3>
+            <h6>Copies an item from one location to another. Usage copy('c://file.txt', 'c://toloc') copy('c://folder',
+                'c://newfolder')</h6>
+            {{ subform.command_name(value='copyfile',type="hidden")}}
+            {{ subform.fromlocation.label }}
+            {{ subform.fromlocation }}
+            {{ subform.tolocation.label }}
+            {{ subform.tolocation }}
+            {{ subform.encoding.label }}
+            {{ subform.encoding }}
 
         </div>
 
         <a class="remove" href="#">Remove</a>
         <hr/>
     </div>
+
+    <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+         id="erase-{{ index }}-form">
+        <div>
+            <h3>Delete files and Folders</h3>
+            <h6>Deletes files and folders. Usage erase('c:/file.txt') erase('c:/folder')</h6>
+            {{ subform.command_name(value='erase',type="hidden")}}
+            {{ subform.fileorfolder.label }}
+            {{ subform.fileorfolder }}
+            {{ subform.encoding.label }}
+            {{ subform.encoding }}
+        </div>
+        <a class="remove" href="#">Remove</a>
+        <hr/>
+    </div>
+
+    <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+         id="getfile-{{ index }}-form">
+        <div>
+            <h3>download file to location</h3>
+            <h6>Usage exmaple // getfile('https://i.imgur.com/P0Qa9QS.jpeg','C:/temp/test2.jpg')</h6>
+            {{ subform.command_name(value='getfile',type="hidden")}}
+            {{ subform.url.label }}
+            {{ subform.url }}
+            {{ subform.tolocation.label }}
+            {{ subform.tolocation }}
+            {{ subform.encoding.label }}
+            {{ subform.encoding }}
+        </div>
+        <a class="remove" href="#">Remove</a>
+        <hr/>
+    </div>
+
+    <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+         id="Createnewuser-{{ index }}-form">
+        <div>
+            <h3>Create Windows User</h3>
+            <h6>creates new local windows user</h6>
+            {{ subform.command_name(value='Createnewuser',type="hidden")}}
+            {{ subform.userName.label }}
+            {{ subform.userName }}
+            {{ subform.password.label }}
+            {{ subform.password }}
+            {{ subform.encoding.label }}
+            {{ subform.encoding }}
+        </div>
+        <a class="remove" href="#">Remove</a>
+        <hr/>
+    </div>
+
     {%- endmacro %}

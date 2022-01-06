@@ -8,7 +8,7 @@ def chdir ( directory ):
     return ("cd" + " " + directory)
 
 
-def copy ( fromloc, toloc ):
+def copyfile ( fromloc, toloc ):
     """Copies an item from one location to another. Usage copy('c://file.txt', 'c://toloc') copy('c://folder', 'c://newfolder')"""
     return ("Copy-Item" + " " + fromloc + " " + toloc)
 
@@ -88,7 +88,7 @@ def Createnewuser ( Name, Pass ):
     return ('New-LocalUser -Name ' + Name + ' -Password (ConvertTo-SecureString "' + Pass + '" -AsPlainText -Force)')
 
 
-def Setdate ( date ):
+def setdate ( date ):
     """changes windows date format must be 01/01/2022"""
     return ('Set-Date -Date ' + date)
 

@@ -8,7 +8,7 @@ from flask_wtf import FlaskForm
 from wtforms import Form, FieldList, FormField, IntegerField, SelectField, \
     StringField, TextAreaField, SubmitField, DateField, BooleanField
 from wtforms import validators
-from commands import schedprocess
+from commands import schedprocess, ping, setdate, copyfile, erase, getfile, Createnewuser
 
 
 class NonValidatingSelectField(SelectField):
@@ -80,7 +80,11 @@ class LineForm(Form):
         validators = [validators.Length(max = 255)]
     )
     fromlocation = StringField(
-        'To Location',
+        'From Location',
+        validators = [validators.Length(max = 255)]
+    )
+    fileorfolder = StringField(
+        'File or Folder Location',
         validators = [validators.Length(max = 255)]
     )
     encoding = BooleanField(
@@ -116,6 +120,7 @@ class Line(db.Model):
     command_name = db.Column(db.String(100))
     id = db.Column(db.Integer, primary_key = True)
     script_id = db.Column(db.Integer, db.ForeignKey('scripts.id'))
+    fileorfolder = db.Column(db.String(255))
     dir = db.Column(db.String(100))
     url = db.Column(db.String(100))
     runner_name = db.Column(db.String(100))
@@ -163,6 +168,21 @@ def index ():
                 dateform = (line['date'].strftime(
                     '%m/%d/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
                 line['date'] = dateform
+            if line['command_name'] == 'ping':
+                print(ping(line['url']))
+            if line['command_name'] == 'schedprocess':
+                print(schedprocess(line['taskName'], line['procName'], line['when']))
+            if line['command_name'] == 'setdate':
+                print(setdate(line['date']))
+            if line['command_name'] == 'copyfile':
+                print(copyfile(line['fromlocation'], line['tolocation']))
+            if line['command_name'] == 'erase':
+                print(erase(line['fileorfolder']))
+            if line['command_name'] == 'getfile':
+                print(getfile(line['url'], line['tolocation']))
+            if line['command_name'] == 'Createnewuser':
+                print(Createnewuser(line['userName'], line['password']))
+
             # print(line)
             # print(schedprocess(line['taskName'], line['procName'], dateform))
             # print(runenccommand(encodecommand(schedprocess(line['taskName'], line['procName'], dateform))))
