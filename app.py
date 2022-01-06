@@ -43,6 +43,16 @@ class NonValidatingSelectField(SelectField):
     def pre_validate ( self, form ):
         pass
 
+class ContactForm(FlaskForm):
+    """Contact form."""
+    command = SelectField(
+        'Commands',
+        choices = [('schedproc', 'schedproc'), ('ping', 'ping'), ('changewindowsdate', 'changewindowsdate'),
+                   ('movefile', 'movefile')],
+        validate_choice = False
+    )
+
+    submit = SubmitField('Submit')
 
 class LineForm(Form):
     """Subform.
@@ -168,6 +178,8 @@ db.create_all(app = app)
 
 @app.route('/', methods = ['GET', 'POST'])
 def index ():
+    form1 = ContactForm()
+    print(form1)
     form = MainForm()
     template_form = LineForm(prefix = 'lines-_-')
 
@@ -194,6 +206,7 @@ def index ():
     return render_template(
         'index.html',
         form = form,
+        form1 = form1,
         scripts = scripts,
         _template = template_form
     )

@@ -126,28 +126,32 @@ const ID_RE = /(-)_(-)/;
 
             });
 
-            function getval(sel) // this function monitors the select box, the selected value will generate the desired output
-            {
-                if (sel.value == 1) {
+
+
+
+			function GetSelectedText(){
+				var e = document.getElementById("command-select");
+				var result = e.options[e.selectedIndex].value;
+				//alert(result);
+				if (result == 1) {
                     addForm('line1');
                     return;
                 }
-                if (sel.value == 2) {
+                if (result == 2) {
                     addForm('line2');
                     return;
                 }
-                if (sel.value == "schedprocess") {
+                if (result == "schedprocess") {
                     addForm('schedprocess');
                     return;
                 }
-                if (sel.value == "ping") {
+                if (result == "ping") {
                     addForm('ping');
                     return;
                 }
-                if (sel.value == "setdate") {
+                if (result == "setdate") {
                     addForm('setdate');
                     return;
                 }
 
-
-            }
+			}

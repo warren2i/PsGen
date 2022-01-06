@@ -37,17 +37,8 @@
         </div>
     </div>
     <p></p>
-    <form>
-        <!-- <a id="add" href="#">Add New Line</a> -->
-        <select onchange="getval(this);">
-            <option value="0">Select Command</option>
-            <option value="schedprocess">schedprocess</option>
-            <option value="ping">Ping</option>
-            <option value="setdate">Change Windows Date</option>
-            <option value="4">Move File</option>
-        </select>
-        <hr/>
-    </form>
+    {{ macros.render_header(headerform) }}
+
 
     {# Show all subforms #}
 

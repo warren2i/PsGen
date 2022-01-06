@@ -11,6 +11,20 @@ Arguments:
 this should match `loop.index0`, and for the template it should be
 '_'
 #}
+{%- macro render_header(headerform) %}
+<div class="input-group">
+    <select aria-label="Generate command" class="form-select" id="command-select">
+        <option value="0">Select a Command</option>
+        <option value="schedprocess">schedprocess</option>
+        <option value="ping">Ping</option>
+        <option value="setdate">Change Windows Date</option>
+        <option value="4">Move File</option>
+    </select>
+    <button class="btn btn-outline-secondary" onclick="GetSelectedText()" type="button">Generate command</button>
+</div>
+<p></p>
+
+{%- endmacro %}
 {%- macro render_line_form(subform, index) %}
 <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
      id="line-{{ index }}-form">

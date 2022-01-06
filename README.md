@@ -24,3 +24,7 @@ TODO ------>
 
 All generated forms in macros.html are displayed and must be removed before building a script, this page should be empty
 when first viewed.
+
+DONE ------>
+
+Bootstrap Javascrip onclick events
