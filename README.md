@@ -4,7 +4,7 @@ Powershell script generation from the browser.
 
 The scope of this tool is to enable novice users to generate complex powershell scripting without prior knowledge.
 
-![alt text](https://github.com/warren2i/PsGen/blob/master/Screenshots/2022-01-05%2015_59_46-Line%20logging.png?raw=true)
+![alt text](https://github.com/warren2i/PsGen/blob/master/Screenshots/2022-01-06%2011_00_27-Line%20logging.png?raw=true)
 
 Install guide.
 
