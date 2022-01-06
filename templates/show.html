@@ -4,7 +4,8 @@
     <link href="static/css/overide.css" media="screen" rel="stylesheet">
     <link href="static/css/bootstrap.min.css" media="screen" rel="stylesheet">
     <link href="static/css/bootstrap-theme.min.css" rel="stylesheet">
-        <script src="/static/js/psgen.js"></script>
+    <script src="/static/js/psgen.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
     <title>Script details</title>
 
 </head>
@@ -14,17 +15,30 @@
 {% if not script %}
 <p>Could not find script details</p>
 {% else %}
-<table>
-    <thead>
-    <tr>
-        <th>Command</th>
-        <th>ID</th>
-        <th>Script ID</th>
-        <th>Runner Name</th>
-        <th>Time</th>
-        <th>arg</th>
-        <th>Task Name</th>
-        <th>When</th>
+
+<div class="container">
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="flush-headingOne">
+                <button aria-controls="flush-collapseOne" aria-expanded="false" class="accordion-button collapsed"
+                        data-bs-target="#flush-collapseOne" data-bs-toggle="collapse" type="button">
+                    Command variables
+                </button>
+            </h2>
+            <div aria-labelledby="flush-headingOne" class="accordion-collapse collapse"
+                 data-bs-parent="#accordionFlushExample" id="flush-collapseOne">
+                <div class="accordion-body">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Command</th>
+                            <th>ID</th>
+                            <th>Script ID</th>
+                            <th>Runner Name</th>
+                            <th>Time</th>
+                            <th>arg</th>
+                            <th>Task Name</th>
+                            <th>When</th>
         <th>Proc Name</th>
         <th>Delay</th>
         <th>Url</th>
@@ -54,10 +68,18 @@
     </tr>
     {% endfor%}
     </tbody>
-    <tbody>
-</table>
-<p></p>
-<div class="container">
+                        <tbody>
+                    </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <p></p>
+
     <div class="pshellcontainer">
         <img src="static/Windows_PowerShell_logo.png"/>
         <img align="right" src="static/Windows_close_icons.png"/>
