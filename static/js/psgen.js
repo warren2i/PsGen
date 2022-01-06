@@ -116,7 +116,9 @@ const ID_RE = /(-)_(-)/;
                 $newForm.addClass('subform');
                 $newForm.removeClass('is-hidden');
 
+                $newForm.find('.btn-close').click(removeForm);
                 $newForm.find('.remove').click(removeForm);
+
             }
 
 

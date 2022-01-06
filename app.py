@@ -92,6 +92,9 @@ class LineForm(Form):
         default = "unchecked",
         false_values = None
     )
+    psline = StringField(
+        'powershell line'
+    )
 
 
 class MainForm(FlaskForm):
@@ -136,6 +139,7 @@ class Line(db.Model):
     tolocation = db.Column(db.String(255))
     fromlocation = db.Column(db.String(255))
     encoding = db.Column(db.String(100))
+    psline = db.Column(db.String(255))
 
     # Relationship
     script = db.relationship(
@@ -170,23 +174,31 @@ def index ():
                 line['date'] = dateform
             if line['command_name'] == 'ping':
                 print(ping(line['url']))
-            if line['command_name'] == 'schedprocess':
-                print(schedprocess(line['taskName'], line['procName'], line['when']))
+                line['psline'] = ping(line['url'])
+            if line['command_name'] == 'schedproc':
+                print(schedprocess(line['taskName'], line['procName'], line['date']))
+                line['psline'] = schedprocess(line['taskName'], line['procName'], line['date'])
             if line['command_name'] == 'setdate':
                 print(setdate(line['date']))
+                line['psline'] = setdate(line['date'])
             if line['command_name'] == 'copyfile':
                 print(copyfile(line['fromlocation'], line['tolocation']))
+                line['psline'] = copyfile(line['fromlocation'], line['tolocation'])
             if line['command_name'] == 'erase':
                 print(erase(line['fileorfolder']))
+                line['psline'] = erase(line['fileorfolder'])
             if line['command_name'] == 'getfile':
                 print(getfile(line['url'], line['tolocation']))
+                line['psline'] = getfile(line['url'], line['tolocation'])
             if line['command_name'] == 'Createnewuser':
                 print(Createnewuser(line['userName'], line['password']))
-
+                line['psline'] = Createnewuser(line['userName'], line['password'])
+            print(line)
             # print(line)
             # print(schedprocess(line['taskName'], line['procName'], dateform))
             # print(runenccommand(encodecommand(schedprocess(line['taskName'], line['procName'], dateform))))
             new_line = Line(**line)
+
             # Add to script
             new_script.lines.append(new_line)
         db.session.commit()
