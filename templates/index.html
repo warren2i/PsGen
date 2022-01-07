@@ -55,14 +55,14 @@
     <div class="dropdown">
         <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
                 id="dropdownMenuButton1" type="button">
-            Select Script
+            Select PowerShell Script
         </button>
         <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
 
             {# Show scripts #}
             {% for script in scripts %}
-            <li><a class="dropdown-item" href="{{ url_for('show_script', script_id=script.id) }}">Script {{ script.id
-                }}</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('show_script', script_id=script.id) }}">PowerShell Script # {{
+                script.id }}</a></li>
 
             {% endfor %}
         </ul>
