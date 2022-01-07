@@ -1,6 +1,8 @@
 {# templates/show.html #}
 {% import "macros.html" as macros %}
-{% import "macros.html" as header %}
+{% import "macros.html" as head %}
+
+
 <html>
 <head>
     <link href="static/css/overide.css" media="screen" rel="stylesheet">
@@ -14,9 +16,8 @@
 </head>
 <body>
 <div class="container">
-    <p></p>
-    {{ macros.header(head) }}
-    <p></p>
+    {% include 'header.html' %}
+
     <a href="{{ url_for('index') }}">Back to index</a>
 
     {% if not script %}
@@ -111,5 +112,6 @@
 
 
         {% endif %}
+
 </body>
 </html>
