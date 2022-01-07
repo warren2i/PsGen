@@ -20,6 +20,38 @@ flask run
 
 visit  http://127.0.0.1:5000/ in browser
 
+**HOW TO USE**
+
+****
+
+**Click the dropdown box to select a command**
+
+**Click 'Generate command'**
+
+The command will be added below.
+
+Enter values into fields & select required arguments.
+
+Repeat this line by line until you have built your script.
+
+Click Generate to create your Pshell script.
+
+![alt text](https://github.com/warren2i/PsGen/blob/master/Screenshots/generating_script.png?raw=true)
+
+****
+
+**Click 'Select PowerShell Script'**
+
+**Select the script you just made**
+
+![alt text](https://github.com/warren2i/PsGen/blob/master/Screenshots/select_script.png?raw=true)
+
+****
+
+![alt text](https://github.com/warren2i/PsGen/blob/master/Screenshots/psscrip.png?raw=true)
+
+****
+
 TODO ------>
 
 copy to clipboard line by line option
