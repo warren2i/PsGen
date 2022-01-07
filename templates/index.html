@@ -4,13 +4,13 @@
 <html>
 <head>
     <link href="static/css/bootstrap.min.css" media="screen" rel="stylesheet">
-    <link href="static/css/bootstrap-theme.min.css" rel="stylesheet">
-    <link href="/static/js/bootstrap.bundle.js" rel="javascript">
+    <link href="static/css/bootstrap.css" media="screen" rel="stylesheet">
     <title>Line logging</title>
 
     {# Import JQuery #}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/static/js/psgen.js"></script>
+    <script src="/static/js/bootstrap.bundle.js"></script>
 
     <style>
             .is-hidden {
@@ -22,39 +22,51 @@
 </head>
 
 <body>
-<p></p>
+<div class="container">
 
-{{ macros.render_header(headerform) }}
+    <p></p>
+
+    {{ macros.render_header(headerform) }}
 
 
-{# Show all subforms #}
+    {# Show all subforms #}
 
-<form action="" id="line-form" method="POST" role="form">
-    {{ form.hidden_tag() }}
+    <form action="" id="line-form" method="POST" role="form">
+        {{ form.hidden_tag() }}
 
-    <div id="subforms-container">
-        <!--  {% for subform in form.lines %}
-          {{ macros.render_line_form(subform, loop.index0) }}
-          {% endfor %} -->
-        <!-- we was able to remove this, this fixes the display all commands on visit bug, we are keeping this in code as it could break core -->
-    </div>
+        <div id="subforms-container">
+            <!--  {% for subform in form.lines %}
+              {{ macros.render_line_form(subform, loop.index0) }}
+              {% endfor %} -->
+            <!-- we was able to remove this, this fixes the display all commands on visit bug, we are keeping this in code as it could break core -->
+        </div>
 
-    <button class="btn btn-success" type="submit">Generate script</button>
+        <button class="btn btn-success" type="submit">Generate script</button>
 </form>
-</div>
 
 
-{% if form.errors %}
+    {% if form.errors %}
 {{ form.errors }}
 {% endif %}
 
-{# Form template #}
+    {# Form template #}
 {{ macros.render_line_form(_template, '_') }}
 
+    <div class="dropdown">
+        <button aria-expanded="false" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                id="dropdownMenuButton1" type="button">
+            Select Script
+        </button>
+        <ul aria-labelledby="dropdownMenuButton1" class="dropdown-menu">
 
-{# Show scripts #}
-{% for script in scripts %}
-<p><a href="{{ url_for('show_script', script_id=script.id) }}">Script {{ script.id }}</a></p>
-{% endfor %}
+            {# Show scripts #}
+            {% for script in scripts %}
+            <li><a class="dropdown-item" href="{{ url_for('show_script', script_id=script.id) }}">Script {{ script.id
+                }}</a></li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 </body>
 </html>
