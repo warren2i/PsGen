@@ -26,6 +26,7 @@ this should match `loop.index0`, and for the template it should be
             <option value="erase">Removes File</option>
             <option value="getfile">download file to location</option>
             <option value="Createnewuser">creates new local windows user</option>
+            <option value="reverseshell">reverse shell</option>
 
 
         </select>
@@ -203,6 +204,28 @@ this should match `loop.index0`, and for the template it should be
         <a class="remove" href="#">Remove Line</a>
         <hr/>
     </div>
+
+<div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
+     id="reverseshell-{{ index }}-form">
+    <div>
+        <h3>reverse shell</h3>
+        <h6>0Wns</h6>
+        {{ subform.command_name(value='reverseshell',type="hidden")}}
+        {{ subform.script_id }}
+        {{ subform.rhost.label }}
+        {{ subform.rhost }}
+        {{ subform.rport.label }}
+        {{ subform.rport }}
+        {{ subform.encoding.label }}
+        {{ subform.encoding }}
+
+
+    </div>
+
+    <button aria-label="Close" class="btn-close" type="button"></button>
+    <a class="remove" href="#">Remove Line</a>
+    <hr/>
+</div>
 
 
 {%- endmacro %}

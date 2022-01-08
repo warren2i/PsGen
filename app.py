@@ -12,6 +12,19 @@ from wtforms import Form, FieldList, FormField, IntegerField, SelectField, \
 from commands import schedprocess, ping, setdate, copyfile, erase, getfile, Createnewuser, runenccommand, encodecommand
 
 
+def shell1 ( ip, port ):
+    # Read in the file
+    with open('shells/shell1.ps1', 'r') as file:
+        filedata = file.read()
+
+    # Replace the target string
+    filedata = filedata.replace('ipaddr', ip)
+    filedata = filedata.replace('rport', port)
+    return filedata
+
+
+# print(shell1('192.168.0.30', '1234'))
+
 def encode ( line, val2encode ):
     if line['encoding'] is not True:
         # dont encode
@@ -39,6 +52,12 @@ class LineForm(Form):
 
     command_name = StringField(
         'command_name'
+    )
+    rhost = StringField(
+        'Remote host IP'
+    )
+    rport = StringField(
+        'Remote host Port'
     )
     runner_name = StringField(
         'Runner name',
@@ -144,6 +163,8 @@ class Line(db.Model):
     line_time = db.Column(db.Integer)
     arg = db.Column(db.String(4))
     delay = db.Column(db.String(255))
+    rhost = db.Column(db.String(100))
+    rport = db.Column(db.String(10))
     timefield = db.Column(db.String(255))
     procName = db.Column(db.String(255))
     when = db.Column(db.String(255))
@@ -154,7 +175,7 @@ class Line(db.Model):
     tolocation = db.Column(db.String(255))
     fromlocation = db.Column(db.String(255))
     encoding = db.Column(db.String(100))
-    psline = db.Column(db.String(255))
+    psline = db.Column(db.Text(255))
 
     # Relationship
     script = db.relationship(
@@ -215,7 +236,12 @@ def index ():
             if line['command_name'] == 'Createnewuser':
                 result = encode(line, Createnewuser(line['userName'], line['password']))
                 line['psline'] = result
-            #print(line)
+            if line['command_name'] == 'reverseshell':
+                result = shell1(line['rhost'], line['rport'])
+                line['psline'] = result
+                print(result)
+
+            # print(line)
             new_line = Line(**line)
 
             # Add to script

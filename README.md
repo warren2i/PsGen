@@ -54,6 +54,10 @@ Click Generate to create your Pshell script.
 
 **TODO ------>**
 
+When powershell command is retreived from database all rich text formatting is lost, this prevents the script from
+running when copied directly. options.... Hard code formatting prior to database submit, but this will require secondary
+output to file or the strip the formatting tags for exportable versions of the scripts.
+
 add tool tips to each field
 
 copy to clipboard line by line option
@@ -61,6 +65,8 @@ copy to clipboard line by line option
 Port across powershell commands
 
 **DONE ------>**
+
+Added 1st undetectable reverse shell
 
 Date format change to suit pshell schema dd/mm/yyyy
 
