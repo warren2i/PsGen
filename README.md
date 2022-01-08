@@ -83,7 +83,7 @@ when first viewed.
 
 **Dev notes ------>**
 
-How to envoke encoded shell
+How to Invoke encoded shell
 
 `$var = 'encoded payload' $var2 = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($var))
 Invoke-Expression $var2`
