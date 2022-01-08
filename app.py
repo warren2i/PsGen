@@ -2,11 +2,11 @@
 # app.py
 import sys
 import base64
+from datetime import datetime
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
 from wtforms.fields import TimeField
-from wtforms_components import DateTimeField
 from wtforms import Form, FieldList, FormField, IntegerField, SelectField, \
     StringField, TextAreaField, SubmitField, DateField, BooleanField, validators
 from commands import schedprocess, ping, setdate, copyfile, erase, getfile, Createnewuser, runenccommand, encodecommand
@@ -67,10 +67,11 @@ class LineForm(Form):
         'Sched task name',
     )
     when = StringField(
-        'When Date Time',
+        'When Date Time'
     )
     timefield = TimeField(
-
+        'Time',
+        default = datetime(1, 1, 1, 0, 0)
     )
     delay = StringField(
         'Delay',
@@ -143,6 +144,7 @@ class Line(db.Model):
     line_time = db.Column(db.Integer)
     arg = db.Column(db.String(4))
     delay = db.Column(db.String(255))
+    timefield = db.Column(db.String(255))
     procName = db.Column(db.String(255))
     when = db.Column(db.String(255))
     taskName = db.Column(db.String(255))
@@ -180,19 +182,26 @@ def index ():
         db.session.add(new_script)
         # print(form.lines.object_data)
         for line in form.lines.data:
-            print(line)
+            # print(line)
+            print(line['timefield'])
+            if line['timefield'] is not None:
+                timeform = (line['timefield'])
+                #    print(timeform)
+                line['timefield'] = str(timeform)  ### this is a temp fix.... converted to string, it should work tho
             if line['date'] is not None:
                 dateform = (line['date'].strftime(
-                    '%d/%m/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
+                    '%m/%d/%Y'))  ## this is how we change the wtforms date format from y-m-d to d/m/y
                 line['date'] = dateform
             if line['command_name'] == 'ping':
                 result = encode(line, ping(line['url']))
                 line['psline'] = result
             if line['command_name'] == 'schedproc':
-                result = encode(line, schedprocess(line['taskName'], line['procName'], line['date']))
+                datetimevar = (line['date'] + ' ' + line['timefield'])
+                result = encode(line, schedprocess(line['taskName'], line['procName'], datetimevar))
                 line['psline'] = result
             if line['command_name'] == 'setdate':
-                result = encode(line, setdate(line['date']))
+                tempval = '"' + str(line['date']) + " " + str(line['timefield']) + '"'
+                result = encode(line, setdate(tempval))
                 line['psline'] = result
             if line['command_name'] == 'copyfile':
                 result = encode(line, copyfile(line['fromlocation'], line['tolocation']))
@@ -206,7 +215,7 @@ def index ():
             if line['command_name'] == 'Createnewuser':
                 result = encode(line, Createnewuser(line['userName'], line['password']))
                 line['psline'] = result
-            print(line)
+            #print(line)
             new_line = Line(**line)
 
             # Add to script

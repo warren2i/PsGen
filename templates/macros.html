@@ -18,6 +18,7 @@ this should match `loop.index0`, and for the template it should be
     <div class="input-group">
         <select aria-label="Generate command" class="form-select" id="command-select">
             <option value="0">Select a Command</option>
+            <option value="temp">temp</option>
             <option value="schedprocess">schedprocess</option>
             <option value="ping">Ping</option>
             <option value="setdate">Change Windows Date</option>
@@ -67,7 +68,6 @@ this should match `loop.index0`, and for the template it should be
         <div>
 
             <h4>sched process</h4>
-            {{ subform.timefield }}
             <h6>You can register a task to run any of the following application or file types: Win32 applications, Win16
                 applications, OS/2 applications, MS-DOS applications, batch files (.bat), command files (.cmd), or any
                 properly registered file type.</h6>
@@ -77,9 +77,10 @@ this should match `loop.index0`, and for the template it should be
             {{ subform.taskName(**{'data-toggle': 'tooltip','title' : 'Name the scheduled task'})}}
             {{ subform.procName.label }}
             {{ subform.procName(**{'data-toggle': 'tooltip','title' : 'Specifies the path to an executable file.'})}}
-
             {{ subform.date.label }}
             {{ subform.date}}
+            {{ subform.timefield.label }}
+            {{ subform.timefield }}
             {{ subform.encoding.label }}
             {{ subform.encoding }}
 
@@ -117,6 +118,8 @@ this should match `loop.index0`, and for the template it should be
             {{ subform.command_name(value='setdate',type="hidden")}}
             {{ subform.script_id }}
             {{ subform.date }}
+            {{ subform.timefield.label }}
+            {{ subform.timefield }}
             {{ subform.encoding.label }}
             {{ subform.encoding }}
 
@@ -201,4 +204,5 @@ this should match `loop.index0`, and for the template it should be
         <hr/>
     </div>
 
-    {%- endmacro %}
+
+{%- endmacro %}
