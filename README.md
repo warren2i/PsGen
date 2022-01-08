@@ -82,6 +82,14 @@ All generated forms in macros.html are displayed and must be removed before buil
 when first viewed.
 
 **Dev notes ------>**
+
+How to envoke encoded shell
+
+`$var = 'encoded payload' $var2 = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($var))
+Invoke-Expression $var2`
+
+****
+
 from wtforms.fields.html5 ##Seems to be depreciated... use this now. from wtforms.fields import TimeField
 
 Encoding switch case

