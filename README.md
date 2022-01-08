@@ -52,13 +52,15 @@ Click Generate to create your Pshell script.
 
 ****
 
-TODO ------>
+**TODO ------>**
+
+add tool tips to each field
 
 copy to clipboard line by line option
 
 Port across powershell commands
 
-DONE ------>
+**DONE ------>**
 
 Date format change to suit pshell schema dd/mm/yyyy
 
@@ -73,7 +75,8 @@ embed github logo in header using svg help page
 All generated forms in macros.html are displayed and must be removed before building a script, this page should be empty
 when first viewed.
 
-Dev notes ------>
+**Dev notes ------>**
+from wtforms.fields.html5 ##Seems to be depreciated... use this now. from wtforms.fields import TimeField
 
 Encoding switch case
 

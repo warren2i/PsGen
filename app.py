@@ -5,9 +5,10 @@ import base64
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import FlaskForm
+from wtforms.fields import TimeField
+from wtforms_components import DateTimeField
 from wtforms import Form, FieldList, FormField, IntegerField, SelectField, \
-    StringField, TextAreaField, SubmitField, DateField, BooleanField
-from wtforms import validators
+    StringField, TextAreaField, SubmitField, DateField, BooleanField, validators
 from commands import schedprocess, ping, setdate, copyfile, erase, getfile, Createnewuser, runenccommand, encodecommand
 
 
@@ -67,6 +68,9 @@ class LineForm(Form):
     )
     when = StringField(
         'When Date Time',
+    )
+    timefield = TimeField(
+
     )
     delay = StringField(
         'Delay',

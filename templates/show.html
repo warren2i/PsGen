@@ -5,16 +5,19 @@
 
 <html>
 <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.js"></script>
     <link href="static/css/overide.css" media="screen" rel="stylesheet">
     <link href="static/css/bootstrap.min.css" media="screen" rel="stylesheet">
     <link href="static/css/bootstrap.css" media="screen" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <script src="/static/js/psgen.js"></script>
-    <script src="/static/js/bootstrap.bundle.js"></script>
-    <title>Script details</title>
+
+    <title>{{ script }}</title>
 
 </head>
 <body>
+
 <div class="container">
     {% include 'header.html' %}
 
@@ -102,16 +105,26 @@
             <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Compile as PowerShell
                 Script
             </button>
-            <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Compile as EXE</button>
-            <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Compile as EXE with Admin
+            <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Compile as EXE
+            </button>
+            <button autocomplete="off" class="btn btn-primary" data-bs-toggle="button" type="button">Compile as EXE with
+                Admin
                 Priv
             </button>
 
 
         </div>
-
-
+        <p></p>
         {% endif %}
+
+        {% for line in script.lines %}
+        {{ line.command_name }}
+        <div class="input-group mb-3">
+            <button class="btn btn-outline-secondary" id="button-addon1" type="button">Copy Line</button>
+            <input aria-describedby="button-addon1" aria-label="Example text with button addon" class="form-control"
+                   type="text" value="{{ line.psline }}">
+        </div>
+        {% endfor%}
 
 </body>
 </html>

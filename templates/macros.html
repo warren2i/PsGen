@@ -65,16 +65,19 @@ this should match `loop.index0`, and for the template it should be
     <div class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}"
          id="schedprocess-{{ index }}-form">
         <div>
+
             <h4>sched process</h4>
+            {{ subform.timefield }}
             <h6>You can register a task to run any of the following application or file types: Win32 applications, Win16
                 applications, OS/2 applications, MS-DOS applications, batch files (.bat), command files (.cmd), or any
                 properly registered file type.</h6>
             {{ subform.command_name(value='schedproc',type="hidden")}}
             {{ subform.script_id }}
             {{ subform.taskName.label }}
-            {{ subform.taskName}}
+            {{ subform.taskName(**{'data-toggle': 'tooltip','title' : 'Name the scheduled task'})}}
             {{ subform.procName.label }}
-            {{ subform.procName}}
+            {{ subform.procName(**{'data-toggle': 'tooltip','title' : 'Specifies the path to an executable file.'})}}
+
             {{ subform.date.label }}
             {{ subform.date}}
             {{ subform.encoding.label }}
