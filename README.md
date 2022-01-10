@@ -52,6 +52,14 @@ Click Generate to create your Pshell script.
 
 ****
 
+
+**Scripts**
+
+Permanent removal of windows defender, this is not reversible .
+
+![alt_text](https://github.com/warren2i/PsGen/blob/master/Screenshots/disable%20win%20defender.png?raw=true)
+****
+
 **TODO ------>**
 
 When powershell command is retreived from database all rich text formatting is lost, this prevents the script from
