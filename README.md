@@ -64,22 +64,7 @@ copy to clipboard line by line option
 
 Port across powershell commands
 
-**DONE ------>**
-
-Added 1st undetectable reverse shell
-
-Date format change to suit pshell schema dd/mm/yyyy
-
-Added copy to clipboard function to scripts page
-
-Bootstrap
-
-Javascrip onclick events
-
-embed github logo in header using svg help page
-
-All generated forms in macros.html are displayed and must be removed before building a script, this page should be empty
-when first viewed.
+add PowerRemoteDesktop by DarkCoderSc, amazing work btw!
 
 **Dev notes ------>**
 
